@@ -275,6 +275,9 @@ get_message(#jabber{type = 'privacy:get_names', username = Name, domain = Domain
 get_message(#jabber{type = 'privacy:set_active', username = Name, domain = Domain}) ->
     privacy_set_active(Name, Domain);
 
+get_message(#jabber{type = 'ping', username = Username, domain = Domain}) ->
+    ping(Domain, Username);
+
 get_message(Jabber) ->
     get_message2(Jabber).
 
@@ -743,7 +746,9 @@ privacy_set_active(User, Domain) ->
            "</iq>"],
     list_to_binary(Req).
 
-
+ping(Domain, Username) ->
+    Jid = [Username, "@", Domain,"/tsung"],
+    list_to_binary(["<iq xml:lang='en' to='",Domain,"' from='",Jid,"' type='get' id='ping1'><ping xmlns='urn:xmpp:ping'/></iq>"]).
 
 %% set the real Id; by default use the Id; but it user and passwd is
 %% defined statically (using csv for example), Id is the tuple { User, Passwd }
