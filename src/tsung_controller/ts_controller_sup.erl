@@ -142,8 +142,8 @@ start_inets(LogDir,Redirect) ->
     end.
 
 template_path() ->
-    case ?config(template_path) of
-        beam_relative ->
-            filename:join(filename:dirname(code:which(tsung_controller)),"../../../../share/tsung/templates");
-        Other -> Other
-    end.
+    %case ?config(template_path) of
+    %    beam_relative ->
+            filename:join(filename:dirname(code:which(tsung_controller)),"../../../../share/tsung/templates").
+    %    Other -> Other
+    %end.
