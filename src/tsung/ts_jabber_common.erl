@@ -748,7 +748,7 @@ privacy_set_active(User, Domain) ->
 
 ping(Domain, Username) ->
     Jid = [Username, "@", Domain,"/tsung"],
-    list_to_binary(["<iq xml:lang='en' to='",Domain,"' from='",Jid,"' type='get' id='",ts_msg_server:get_id(list),"'><ping xmlns='urn:xmpp:ping'/></iq>"]).
+    list_to_binary(["<iq xml:lang='en' to='",Domain,"' from='",Jid,"' type='get' id='ping1'><ping xmlns='urn:xmpp:ping'/></iq>"]).
 
 %% set the real Id; by default use the Id; but it user and passwd is
 %% defined statically (using csv for example), Id is the tuple { User, Passwd }
