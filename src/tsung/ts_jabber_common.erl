@@ -266,6 +266,9 @@ get_message(#jabber{type = 'muc:nick', room = Room, muc_service = Service, nick 
 get_message(#jabber{type = 'muc:exit', room = Room, muc_service = Service, nick = Nick}) ->
     muc_exit(Room, Nick, Service);
 
+get_message(#jabber{type = 'ping', data=Data, username = Username, domain = Domain, resource=Resource}) ->
+    ping(Domain, Username, Resource, Data, undefined);
+
 get_message(Jabber=#jabber{id=user_defined}) ->
     get_message2(Jabber);
 
