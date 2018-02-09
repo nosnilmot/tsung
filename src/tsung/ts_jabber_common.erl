@@ -651,6 +651,10 @@ pubsub_node_type(undefined) ->
 pubsub_node_type(Type) when is_list(Type) ->
     [" type='", Type, "' "].
 
+pubsub_subid(undefined) -> "";
+pubsub_subid(SubId) when is_list(SubId) ->
+    [" subid='", SubId, "' "].
+
 %%%----------------------------------------------------------------------
 %%% Func: delete_pubsub_node/4
 %%% Delete a pubsub node: Generate XML packet
@@ -696,7 +700,7 @@ unsubscribe_pubsub_node(Domain, PubSubComponent, UserFrom, UserTo, Node, SubId) 
                     "<unsubscribe",
                     pubsub_node_attr(Node, Domain, UserTo),
                     " jid='", UserFrom, "@", Domain, "'",
-                    " subid='", SubId, "'",
+                    pubsub_subid(SubId),
                     "/>",
                     "</pubsub>",
                     "</iq>"]).
